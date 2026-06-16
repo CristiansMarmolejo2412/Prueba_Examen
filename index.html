@@ -1,13 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Horario de Atención</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-    We goonna take
-    take
-    git status
+
+  <div class="contenedor-app">
+    <div class="modal">
+
+      <!-- ── Encabezado ── -->
+      <div class="modal-encabezado">
+        <div class="encabezado-icono">
+          <img src="img/icono-calendario.svg" alt="Calendario" width="22" height="22" />
+        </div>
+        <div class="encabezado-texto">
+          <h1>Mi Horario de Atención</h1>
+          <p>Configura tus días y horarios disponibles</p>
+        </div>
+        <button class="boton-cerrar" id="botonCerrar" aria-label="Cerrar">✕</button>
+      </div>
+
+      <!-- ── Cuerpo: lista de días ── -->
+      <div class="modal-cuerpo" id="listaDias"></div>
+
+      <!-- ── Pie ── -->
+      <div class="modal-pie">
+        <button class="boton-agregar-dia" id="botonAgregarDia">
+          Agregar día
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════
+       TEMPLATE: tarjeta de un día
+       JS clona este template, rellena [data-nombre]
+       y lo inserta en #listaDias
+  ════════════════════════════════════════════════ -->
+  <template id="template-dia">
+    <div class="tarjeta-dia" data-dia="">
+
+      <!-- Encabezado de la tarjeta -->
+      <div class="tarjeta-encabezado">
+
+        <label class="interruptor">
+          <input type="checkbox" class="check-activo" checked />
+          <span class="interruptor-pista"></span>
+        </label>
+
+        <span class="nombre-dia"></span>
+
+        <button class="boton-agregar-franja" title="Agregar franja horaria">
+          <img src="img/icono-agregar.svg" alt="Agregar" width="16" height="16" />
+        </button>
+
+      </div>
+
+      <!-- Franjas horarias (se agregan aquí) -->
+      <div class="contenedor-franjas"></div>
+
+      <!-- Eliminar día -->
+      <button class="boton-eliminar-dia">
+        <img src="img/icono-eliminar.svg" alt="Eliminar" width="14" height="14" />
+        Eliminar día
+      </button>
+
+    </div>
+  </template>
+
+  <!-- ════════════════════════════════════════════════
+       TEMPLATE: una franja horaria (entrada – salida)
+       JS clona este template y lo inserta en
+       .contenedor-franjas del día correspondiente
+  ════════════════════════════════════════════════ -->
+  <template id="template-franja">
+    <div class="franja-horaria">
+
+      <img class="franja-icono" src="img/icono-reloj.svg" alt="Hora" width="16" height="16" />
+
+      <div class="franja-campos">
+        <input type="time" class="input-hora entrada" value="08:00" />
+        <input type="time" class="input-hora salida"  value="17:00" />
+      </div>
+
+      <button class="boton-eliminar-franja" title="Eliminar franja">
+        <img src="img/icono-eliminar.svg" alt="Eliminar" width="13" height="13" />
+        Eliminar
+      </button>
+
+    </div>
+  </template>
+
+  <script src="app.js"></script>
 </body>
 </html>
